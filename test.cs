@@ -88,7 +88,11 @@ static class Mute {
     Mute.list.Clear();
     MMDevice device = Mute.getDevice();
     for (int i = 0; i < device.AudioSessionManager2.Sessions.Count; i++) {
-      Mute.list.Add(new Details(device.AudioSessionManager2.Sessions[i]));
+      try {
+        Mute.list.Add(new Details(device.AudioSessionManager2.Sessions[i]));
+      } catch(ArgumentException e) {
+
+      }
     }
     return Mute.list.ToArray();
   }
